@@ -13,7 +13,7 @@ jobs:
     runs-on: macos-15-intel
     timeout-minutes: 240
     env:
-      DIAGNOSTIC_MODE: ${{ github.event_name == 'push' && startsWith(github.event.head_commit.message, 'DIAGNOSTIC:') }}
+      DIAGNOSTIC_MODE: true
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
@@ -71,7 +71,7 @@ jobs:
           if [ "$DIAGNOSTIC_MODE" = "true" ]; then
             LOG_FILE="$GITHUB_WORKSPACE/ci-output/diagnostics/creator-cli.log"
             echo "DIAGNOSTIC_MODE=true: launch Cocos Creator for up to six minutes with process and screen heartbeats."
-            "$CREATOR_BIN" --project "$GITHUB_WORKSPACE" --build "$BUILD_ARGS" >"$LOG_FILE" 2>&1 &
+            "$CREATOR_BIN" -- --nologin --project "$GITHUB_WORKSPACE" --build "$BUILD_ARGS" >"$LOG_FILE" 2>&1 &
             CREATOR_PID=$!
             for i in $(seq 1 12); do
               sleep 30
