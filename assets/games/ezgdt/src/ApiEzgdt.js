@@ -1,0 +1,297 @@
+let proto = module.exports;
+
+proto.gameStatus = {
+	/* 等待操作 */
+	NONE: 0,
+	/* 抢庄 */
+	ROB_BANK: 1,
+	/* 发牌中 */
+	SEND_CARDS: 2,
+	/* 下分中 */
+	POUR_SCORE: 3,
+	/* 用户亮牌操作 */
+	SHOW_CARD: 4,
+	/* 显示结果 */
+	RESULT: 6,
+
+};
+
+proto.gameStatusTm = {
+	NONE: 0,
+	/* 等待操作 */
+	ROB_BANK: 10,
+	/* 抢庄 */
+	SEND_CARDS: 3,
+	/* 发牌中 */
+	POUR_SCORE: 10,
+	/* 下分中 */
+	SHOW_CARD: 15,
+	/* 用户亮牌操作 */
+	RESULT: 5,
+	/* 显示结果 */
+};
+
+proto.cardType = {
+	ERROR: -1, // 错误
+	DIAN: 0, // 点
+	BA_DIAN: 1, //8点
+	JIU_DIAN: 2, //9点
+	DUI_ZI: 3, //对子
+	DUI_A: 4, //对A
+	DUI_WANG: 5, //对王
+};
+
+//庄家规则
+proto.gameType = {
+	LUNZHUANG: 1,
+	/* 轮庄 */
+	QIANGZHUANG: 2,
+	/* 抢庄 */
+	BAWANGZHUANG: 3,
+	/* 霸王庄 */
+};
+
+proto.GAME_STATUS_PUSH = 470; //游戏状态推送
+
+//庄家推送
+proto.GAME_BANKER_PUSH = 601;
+proto.gameBankerPush = function (uid, userList) {
+	return {
+		type: this.GAME_BANKER_PUSH,
+		data: {
+			uid,
+			userList
+		},
+	};
+};
+
+proto.GAME_ROB_BANK_NOTIFY = 502; /* 抢庄通知 */
+proto.gameRobBankerNotify = function (isRob) {
+	return {
+		type: this.GAME_ROB_BANK_NOTIFY,
+		data: {
+			isRob
+		},
+	};
+}
+proto.GAME_ROB_BANK_PUSH = 602; /* 抢庄结果 */
+proto.gameRobBankPush = function (uid, isRob) {
+	return {
+		type: this.GAME_ROB_BANK_PUSH,
+		data: {
+			uid,
+			isRob
+		},
+	};
+};
+
+
+//发玩家手牌
+proto.GAME_SEND_CARDS_PUSH = 603;
+proto.gameSendCardPush = function (handCards, leftCount, lastCards) {
+
+	return {
+		type: this.GAME_SEND_CARDS_PUSH,
+		data: {
+			handCards,
+			leftCount,
+			lastCards
+		},
+	};
+};
+
+//玩家下分操作推送
+proto.GAME_USER_POUR_SCORE_PUSH = 605;
+proto.gameUserPourScorePush = function (bankerUid, tick, minPourScore, maxPourScore) {
+	return {
+		type: this.GAME_USER_POUR_SCORE_PUSH,
+		data: {
+			bankerUid,
+			tick,
+			minPourScore,
+			maxPourScore
+		},
+	};
+};
+
+proto.GAME_USER_SCORE_NOTIFY = 513; /* 下分通知 */
+proto.gameUserPourScoreNotify = function (score) {
+	return {
+		type: this.GAME_USER_SCORE_NOTIFY,
+		data: {
+			score
+		},
+	};
+}
+proto.GAME_USER_SCORE_PUSH = 613; /* 下分结果 */
+proto.gameUserPourScore = function (uid, score) {
+	return {
+		type: this.GAME_ROB_BANK_PUSH,
+		data: {
+			uid,
+			score
+		},
+	};
+};
+
+
+//游戏结果推送
+proto.GAME_RESULT_PUSH = 606;
+proto.gameResultPush = function (result) {
+	return {
+		type: this.GAME_RESULT_PUSH,
+		data: {
+			result: result
+		},
+	};
+};
+
+
+//牌面回房
+proto.GAME_REVIEW_NOTIFY = 507;
+proto.gameReviewNotify = function () {
+	return {
+		type: this.GAME_REVIEW_NOTIFY,
+		data: {},
+	};
+};
+proto.GAME_REVIEW_PUSH = 607;
+proto.gameReviewPush = function (list) {
+	return {
+		type: this.GAME_REVIEW_PUSH,
+		data: {
+			list: list,
+		},
+	};
+};
+
+//局数推送
+proto.GAME_BUREAU_PUSH = 608;
+proto.gameBureauPush = function (curBureau) {
+	return {
+		type: this.GAME_BUREAU_PUSH,
+		data: {
+			curBureau: curBureau,
+		},
+	};
+};
+
+
+proto.GAME_END_PUSH = 609;
+proto.gameEndPush = function (result, winMost, loseMost, creater, plusInfo) {
+
+	let curResult = {
+		type: this.GAME_END_PUSH,
+		data: {
+			result: result,
+			winMost: winMost,
+			loseMost: loseMost,
+			creater: creater,
+			plusInfo: plusInfo,
+		},
+	};
+	return curResult;
+};
+
+//亮牌推送
+proto.SHOW_CARDS_NOTIFY = 512;
+proto.showCardsNotify = function () {
+	return {
+		type: this.SHOW_CARDS_NOTIFY,
+		data: {}
+	};
+}
+proto.SHOW_CARDS_PUSH = 612;
+proto.showCardsPush = function (chairID, cardsList, uid = null) {
+	return {
+		type: this.SHOW_CARDS_PUSH,
+		data: {
+			chairID,
+			uid,
+			cardsList
+		}
+	};
+};
+
+//----------------------------调试功能------------------------------------
+
+
+
+proto.GAME_SET_TEST_CARDS_PUSH = 651;
+proto.gameSetTestCardsPush = function (isSuccess) {
+	return {
+		type: this.GAME_SET_TEST_CARDS_PUSH,
+		data: {
+			isSuccess
+		},
+	};
+};
+
+
+
+proto.GAME_GET_TEST_CARDS_PUSH = 652;
+proto.gameGetTestCardsPush = function (uid, allCardsData, testCards) {
+	return {
+		type: this.GAME_GET_TEST_CARDS_PUSH,
+		data: {
+			uid,
+			allCardsData,
+			testCards
+		},
+	};
+};
+
+
+proto.GAME_INQTIRE_ARRCARDS_NOTIFY = 318; /* 查询牌库 */
+proto.GAME_INQTIRE_ARRCARDS_PUSH = 418; /*查询牌库结果 */
+// 新查询牌库  type  //0查询当前牌库 1查询下局牌库
+proto.gameInqtireArrcardsNotify = function (type, nextUid) {
+	return {
+		type: this.GAME_INQTIRE_ARRCARDS_NOTIFY,
+		data: {
+			type: type,
+			nextUid: nextUid,
+		},
+	};
+};
+
+proto.GAME_SUBSTRATUM_TRADE_CARDS_NOTIFY = 317; /* 下局换牌 */
+proto.GAME_SUBSTRATUM_TRADE_CARDS_PUSH = 417; /* 下局换牌结果 */
+
+proto.gameSubstratumTradeCardsNotify = function (uid, nextUid, type, cards, handCards) {
+	return {
+		type: this.GAME_SUBSTRATUM_TRADE_CARDS_NOTIFY,
+		data: {
+			uid: uid,
+			nextUid: nextUid,
+			type: type,
+			Cards: cards,
+			handCards: handCards,
+		},
+	};
+};
+
+
+
+
+//查询牌库
+proto.GAME_GET_TEST_CARDS_NOTIFY = 552;
+proto.gameGetTestCardsNotify = function (nextUid) {
+	return {
+		type: this.GAME_GET_TEST_CARDS_NOTIFY,
+		data: {
+			uid: nextUid,
+		},
+	};
+};
+
+proto.GAME_SET_TEST_CARDS_NOTIFY = 551;
+proto.gameSetTestCardsNotify = function (uid, cardData) {
+	return {
+		type: this.GAME_SET_TEST_CARDS_NOTIFY,
+		data: {
+			uid: uid,
+			cardData,
+		},
+	};
+};

@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "69385c75-0990-47b0-926c-1790110af665",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 113,
+  "height": 192,
+  "platformSettings": {},
+  "subMetas": {
+    "mj_card_burning-fire_03": {
+      "ver": "1.0.6",
+      "uuid": "876ef7e3-9e10-4948-922b-062739e8cadb",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "69385c75-0990-47b0-926c-1790110af665",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": -4,
+      "trimX": 1,
+      "trimY": 8,
+      "width": 111,
+      "height": 184,
+      "rawWidth": 113,
+      "rawHeight": 192,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

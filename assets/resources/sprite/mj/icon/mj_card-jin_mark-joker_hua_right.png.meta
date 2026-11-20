@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "1d61e5a9-e3ac-47c8-a8a8-d4577d5a3dc8",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 54,
+  "height": 55,
+  "platformSettings": {},
+  "subMetas": {
+    "mj_card-jin_mark-joker_hua_right": {
+      "ver": "1.0.6",
+      "uuid": "ffe92bc0-f2dd-40b9-8ad8-36bd323e384a",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "1d61e5a9-e3ac-47c8-a8a8-d4577d5a3dc8",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0.5,
+      "offsetY": -1,
+      "trimX": 1,
+      "trimY": 2,
+      "width": 53,
+      "height": 53,
+      "rawWidth": 54,
+      "rawHeight": 55,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

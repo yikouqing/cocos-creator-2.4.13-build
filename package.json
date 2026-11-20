@@ -1,0 +1,15 @@
+{
+  "name": "newmultiplegames",
+  "version": "1.0.0",
+  "description": "演示-百游新",
+  "main": "license.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cropper": "^4.1.0",
+    "fs-extra": "^11.2.0"
+  }
+}

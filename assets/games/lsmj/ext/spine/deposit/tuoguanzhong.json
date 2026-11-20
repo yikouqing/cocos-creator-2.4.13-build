@@ -1,0 +1,100 @@
+{
+"skeleton": {
+	"hash": "PmWM5Um2nnh2fRa92Nq4iZrEXbA",
+	"spine": "3.8.75",
+	"x": -158.61,
+	"y": -8.08,
+	"width": 363.37,
+	"height": 84,
+	"images": "C:/Users/aa/Desktop/托管中",
+	"audio": ""
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "bone", "parent": "root", "x": -120.7, "y": 38.65 },
+	{ "name": "bone2", "parent": "root", "x": -34.11, "y": 38.16 },
+	{ "name": "bone3", "parent": "root", "x": 51.38, "y": 44.53 },
+	{ "name": "bone4", "parent": "root", "x": 113.15, "y": 7.89 },
+	{ "name": "bone5", "parent": "root", "x": 153.94, "y": 7.94 },
+	{ "name": "bone6", "parent": "root", "x": 193.39, "y": 8.55 }
+],
+"slots": [
+	{ "name": "图层 12", "bone": "bone", "attachment": "图层 12" },
+	{ "name": "图层 13", "bone": "bone2", "attachment": "图层 13" },
+	{ "name": "图层 14", "bone": "bone3", "attachment": "图层 14" },
+	{ "name": "图层 15", "bone": "bone4", "attachment": "图层 15" },
+	{ "name": "图层 16", "bone": "bone5", "attachment": "图层 16" },
+	{ "name": "图层 17", "bone": "bone6", "attachment": "图层 17" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"图层 15": {
+				"图层 15": { "x": 0.31, "y": -2.36, "width": 22, "height": 24 }
+			},
+			"图层 16": {
+				"图层 16": { "x": -0.22, "y": -2.4, "width": 22, "height": 24 }
+			},
+			"图层 17": {
+				"图层 17": { "x": -0.13, "y": -3.01, "width": 23, "height": 24 }
+			},
+			"图层 12": {
+				"图层 12": { "x": 1.6, "y": -4.23, "width": 79, "height": 83 }
+			},
+			"图层 13": {
+				"图层 13": { "x": 0.45, "y": -4.24, "width": 79, "height": 84 }
+			},
+			"图层 14": {
+				"图层 14": { "x": 0.36, "y": -10.11, "width": 75, "height": 83 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {
+		"bones": {
+			"bone": {
+				"translate": [
+					{ "y": 24.59, "curve": 0.25, "c3": 0, "c4": 0.6 },
+					{ "time": 0.1667, "y": -1.89 }
+				]
+			},
+			"bone2": {
+				"translate": [
+					{ "curve": 0.25, "c3": 0, "c4": 0.6 },
+					{ "time": 0.1667, "y": 26.47, "curve": 0.25, "c3": 0, "c4": 0.6 },
+					{ "time": 0.3333 }
+				]
+			},
+			"bone3": {
+				"translate": [
+					{ "curve": 0.25, "c3": 0, "c4": 0.6 },
+					{ "time": 0.3333, "y": 21.49, "curve": 0.25, "c3": 0, "c4": 0.6 },
+					{ "time": 0.5, "y": -0.53 }
+				]
+			},
+			"bone4": {
+				"translate": [
+					{ "curve": 0.25, "c3": 0, "c4": 0.6 },
+					{ "time": 0.3333, "y": 30.65, "curve": 0.25, "c3": 0, "c4": 0.6 },
+					{ "time": 0.5, "y": 0.63 }
+				]
+			},
+			"bone5": {
+				"translate": [
+					{ "curve": 0.25, "c3": 0, "c4": 0.6 },
+					{ "time": 0.5, "y": 29.2, "curve": 0.25, "c3": 0, "c4": 0.6 },
+					{ "time": 0.6667, "y": 0.63 }
+				]
+			},
+			"bone6": {
+				"translate": [
+					{ "curve": 0.25, "c3": 0, "c4": 0.6 },
+					{ "time": 0.6667, "y": 24.3 }
+				]
+			}
+		}
+	}
+}
+}

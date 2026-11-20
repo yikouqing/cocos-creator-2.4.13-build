@@ -1,0 +1,13 @@
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+assets/games/lsmj
+📙 Node References x 2
+　　💠 [Prefab] assets/games/lsmj/res/prefab/LSMJReviewDialog.prefab
+　　　　🎲 [Node] LSMJReviewDialog/tiles/handTiles0/optTiles0 　→ 　🧩 [Component] LSMJOptTileMgr.js 　→ 　📄 [Property] optPfb
+　　🔥 [Scene] assets/games/lsmj/scn/lsmj.fire
+　　　　🎲 [Node] Canvas/tiles/handTiles0/optTiles0 　→ 　🧩 [Component] LSMJOptTileMgr.js 　→ 　📄 [Property] optPfb
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+assets/pops/dlchun
+📙 Node References x 1
+　　💠 [Prefab] assets/pops/dlchun/res/prefab/union/manager/UnionPresentDialog.prefab
+　　　　🎲 [Node] UnionPresentDialog/bg/title_zylm 　→ 　🧩 [Component] cc.Sprite 　→ 　📄 [Property] spriteFrame
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

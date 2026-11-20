@@ -1,0 +1,109 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "voice",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.8571428571428571,
+  "sample": 7,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "paths": {
+      "v1": {
+        "props": {
+          "active": [
+            {
+              "frame": 0,
+              "value": true
+            }
+          ]
+        }
+      },
+      "v2": {
+        "props": {
+          "active": [
+            {
+              "frame": 0,
+              "value": false
+            },
+            {
+              "frame": 0.14285714285714285,
+              "value": true
+            }
+          ]
+        }
+      },
+      "v3": {
+        "props": {
+          "active": [
+            {
+              "frame": 0,
+              "value": false
+            },
+            {
+              "frame": 0.2857142857142857,
+              "value": true
+            }
+          ]
+        }
+      },
+      "v4": {
+        "props": {
+          "active": [
+            {
+              "frame": 0,
+              "value": false
+            },
+            {
+              "frame": 0.42857142857142855,
+              "value": true
+            }
+          ]
+        }
+      },
+      "v5": {
+        "props": {
+          "active": [
+            {
+              "frame": 0,
+              "value": false
+            },
+            {
+              "frame": 0.5714285714285714,
+              "value": true
+            }
+          ]
+        }
+      },
+      "v6": {
+        "props": {
+          "active": [
+            {
+              "frame": 0,
+              "value": false
+            },
+            {
+              "frame": 0.7142857142857143,
+              "value": true
+            }
+          ]
+        }
+      },
+      "v7": {
+        "props": {
+          "active": [
+            {
+              "frame": 0,
+              "value": false
+            },
+            {
+              "frame": 0.8571428571428571,
+              "value": true
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": []
+}

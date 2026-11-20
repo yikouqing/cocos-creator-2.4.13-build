@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "aea7ee4a-a6ce-42aa-9d52-e4593af235df",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 21,
+  "height": 23,
+  "platformSettings": {},
+  "subMetas": {
+    "mj_card-card_mark-gui_out_top": {
+      "ver": "1.0.6",
+      "uuid": "6f71dd73-0e2d-450d-835e-f9c8f1beb742",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "aea7ee4a-a6ce-42aa-9d52-e4593af235df",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 21,
+      "height": 23,
+      "rawWidth": 21,
+      "rawHeight": 23,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

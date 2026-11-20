@@ -1,0 +1,83 @@
+{
+  "urls": {
+    "license": "http://127.0.0.1:14224/hot-update/license.json",
+    "server": "http://118.31.69.244:13200",
+    "ftps": "http://118.31.69.244:14224",
+    "ws": {
+      "host": "118.31.69.244",
+      "port": "12200"
+    },
+    "wxAppUserInfo": "https://api.weixin.qq.com/sns/userinfo",
+    "wxWebAuth": "https://open.weixin.qq.com/connect/oauth2/authorize"
+  },
+  "wechat": {
+    "web": [
+      {
+        "name": "百游",
+        "channelId": 0,
+        "wxAppId": "wx765087f9dcfc5f6f",
+        "wxAppSecret": "",
+        "wxWebId": "wx765087f9dcfc5f6f",
+        "wxWebSecret": ""
+      }
+    ],
+    "ios": [
+      {
+        "name": "百游",
+        "channelId": 0,
+        "wxAppId": "wx765087f9dcfc5f6f",
+        "wxAppSecret": "",
+        "wxWebId": "wx765087f9dcfc5f6f",
+        "wxWebSecret": ""
+      }
+    ],
+    "android": [
+      {
+        "name": "百游",
+        "channelId": 0,
+        "wxAppId": "wx765087f9dcfc5f6f",
+        "wxAppSecret": "",
+        "wxWebId": "wx765087f9dcfc5f6f",
+        "wxWebSecret": ""
+      }
+    ],
+    "harmony": [
+      {
+        "name": "百游",
+        "channelId": 0,
+        "wxAppId": "wx765087f9dcfc5f6f",
+        "wxAppSecret": "",
+        "wxWebId": "wx765087f9dcfc5f6f",
+        "wxWebSecret": ""
+      }
+    ]
+  },
+  "channels": [
+    {
+      "accountLogin": false,
+      "wechatLogin": false,
+      "phoneLogin": false,
+      "appleLogin": false
+    },
+    {
+      "accountLogin": true,
+      "wechatLogin": true,
+      "phoneLogin": true,
+      "appleLogin": true
+    },
+    {
+      "accountLogin": true,
+      "wechatLogin": true,
+      "phoneLogin": true,
+      "appleLogin": true
+    }
+  ],
+  "authorize": {
+    "licenseAuth": false,
+    "licenseKey": "",
+    "licenseIv": "",
+    "cryptoKey": "",
+    "cryptoIv": "",
+    "licenseVal": ""
+  }
+}

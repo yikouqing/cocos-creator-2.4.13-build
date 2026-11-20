@@ -1,0 +1,214 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "",
+    "_objFlags": 0,
+    "_native": "",
+    "data": {
+      "__id__": 1
+    },
+    "optimizationPolicy": 0,
+    "asyncLoadAssets": false,
+    "readonly": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "GCTShunziAnimation",
+    "_objFlags": 0,
+    "_parent": null,
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 2
+      },
+      {
+        "__id__": 3
+      }
+    ],
+    "_prefab": {
+      "__id__": 4
+    },
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 419,
+      "height": 78
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_trs": {
+      "__type__": "TypedArray",
+      "ctor": "Float64Array",
+      "array": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "_eulerAngles": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_is3DNode": false,
+    "_groupIndex": 0,
+    "groupIndex": 0,
+    "_id": ""
+  },
+  {
+    "__type__": "c7cdfqqIndFsJdKLWAeMrh9",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "intervalTime": 0.05,
+    "spriteFrameArr": [
+      {
+        "__uuid__": "38288f16-0fa4-4a8b-92d0-694c1aaddf74"
+      },
+      {
+        "__uuid__": "bc23cfef-e8ab-43b9-b0cd-959d83dc6e22"
+      },
+      {
+        "__uuid__": "27b04045-03bd-4f13-9029-c1e724acf129"
+      },
+      {
+        "__uuid__": "1ac10fe5-15ea-4f66-abac-4b785780809d"
+      },
+      {
+        "__uuid__": "ec0b3b38-82f5-44cd-a581-7c9bf9f96b4f"
+      },
+      {
+        "__uuid__": "06921071-4606-4e82-9e8c-23637c2e0a3b"
+      },
+      {
+        "__uuid__": "eff69f86-5794-45dd-87b8-7f9d4748eccb"
+      },
+      {
+        "__uuid__": "91af7ba7-36eb-46dd-96fc-30116f262e18"
+      },
+      {
+        "__uuid__": "3a2513cd-7904-4403-bac3-87360ea1ac2a"
+      },
+      {
+        "__uuid__": "b8cf1213-8158-4509-ba14-6bcf37cf4cd5"
+      },
+      {
+        "__uuid__": "ecd392d1-dea2-4e26-a5bb-b1f14314f8f1"
+      },
+      {
+        "__uuid__": "a669415f-b11d-46b4-a056-b8cca2cadbe6"
+      },
+      {
+        "__uuid__": "76ac7029-c105-4219-9181-fa1711517e1b"
+      },
+      {
+        "__uuid__": "cd8f9635-fdf7-4dd5-8da7-241aa4134cbd"
+      },
+      {
+        "__uuid__": "65b698a5-0537-40e7-99ed-5361cb4fa84f"
+      },
+      {
+        "__uuid__": "72a12f79-be29-4a3f-b91e-6626fdd7d51c"
+      },
+      {
+        "__uuid__": "887aefdf-2b8a-4206-95d3-986debd2bb05"
+      },
+      {
+        "__uuid__": "2831b022-1654-4bad-9c46-e6e85d69d4d5"
+      },
+      {
+        "__uuid__": "e9f5e7fd-f892-454d-beed-4b746f3d95be"
+      },
+      {
+        "__uuid__": "38381f1a-bcde-4cf3-89a6-a89ef0a81e8f"
+      },
+      {
+        "__uuid__": "a2047be1-a4f6-479f-ae9f-a8c28c0bf435"
+      },
+      {
+        "__uuid__": "b2e5077c-d9d9-4fa7-a093-ad879ab360d4"
+      },
+      {
+        "__uuid__": "f7e3480c-c4ca-4222-a1e2-91930b645c38"
+      },
+      {
+        "__uuid__": "49379c37-01f5-462e-935e-62c642283b96"
+      },
+      {
+        "__uuid__": "1f563135-ceaf-46af-abd1-a66acfbf41b3"
+      }
+    ],
+    "startIndex": 0,
+    "baseSprite": {
+      "__id__": 3
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_materials": [
+      {
+        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+      }
+    ],
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_spriteFrame": {
+      "__uuid__": "38288f16-0fa4-4a8b-92d0-694c1aaddf74"
+    },
+    "_type": 0,
+    "_sizeMode": 2,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": false,
+    "_atlas": null,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__id__": 0
+    },
+    "fileId": "",
+    "sync": false
+  }
+]

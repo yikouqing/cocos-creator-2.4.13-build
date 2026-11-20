@@ -1,0 +1,119 @@
+name: Cocos Creator 2.4.13 builds
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build-all:
+    runs-on: macos-14
+    timeout-minutes: 240
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          lfs: false
+          submodules: false
+
+      - name: Set up Java for Android build
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '8'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android SDK/NDK components
+        shell: bash
+        run: |
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager --install \
+            "platform-tools" \
+            "platforms;android-30" \
+            "build-tools;30.0.3" \
+            "ndk;21.4.7075529" \
+            "cmake;3.10.2.4988404"
+
+      - name: Install Cocos Creator 2.4.13
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/cocos-creator"
+          curl --fail --location --retry 3 \
+            "https://download.cocos.com/CocosCreator/v2.4.13/CocosCreator-v2.4.13-20240123-mac.zip" \
+            --output "$RUNNER_TEMP/cocos-creator-2.4.13.zip"
+          unzip -q "$RUNNER_TEMP/cocos-creator-2.4.13.zip" -d "$RUNNER_TEMP/cocos-creator"
+          APP="$(find "$RUNNER_TEMP/cocos-creator" -name 'CocosCreator.app' -type d -print -quit)"
+          if [ -z "$APP" ]; then
+            echo 'CocosCreator.app was not found in the official archive.' >&2
+            find "$RUNNER_TEMP/cocos-creator" -maxdepth 3 -print | head -100
+            exit 1
+          fi
+          xattr -dr com.apple.quarantine "$APP" || true
+          echo "CREATOR_BIN=$APP/Contents/MacOS/CocosCreator" >> "$GITHUB_ENV"
+          echo "Cocos Creator app: $APP"
+
+      - name: Build Web Mobile
+        id: web
+        continue-on-error: true
+        shell: bash
+        run: |
+          mkdir -p "$GITHUB_WORKSPACE/ci-output/web"
+          "$CREATOR_BIN" --project "$GITHUB_WORKSPACE" \
+            --build "platform=web-mobile;debug=false;buildPath=$GITHUB_WORKSPACE/ci-output/web"
+
+      - name: Build Android project and debug APK
+        id: android
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$GITHUB_WORKSPACE/ci-output/android"
+          "$CREATOR_BIN" --project "$GITHUB_WORKSPACE" \
+            --build "platform=android;debug=false;buildPath=$GITHUB_WORKSPACE/ci-output/android"
+          GRADLEW="$(find "$GITHUB_WORKSPACE/ci-output/android" -type f -name gradlew -print -quit)"
+          if [ -z "$GRADLEW" ]; then
+            echo 'Creator did not generate a Gradle wrapper; keeping the generated Android project as an artifact.'
+            exit 0
+          fi
+          chmod +x "$GRADLEW"
+          (cd "$(dirname "$GRADLEW")" && ./gradlew assembleDebug --no-daemon)
+
+      - name: Build iOS project and unsigned simulator app
+        id: ios
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$GITHUB_WORKSPACE/ci-output/ios"
+          "$CREATOR_BIN" --project "$GITHUB_WORKSPACE" \
+            --build "platform=ios;debug=false;buildPath=$GITHUB_WORKSPACE/ci-output/ios"
+          XCODEPROJ="$(find "$GITHUB_WORKSPACE/ci-output/ios" -type d -name '*.xcodeproj' -print -quit)"
+          if [ -z "$XCODEPROJ" ]; then
+            echo 'Creator did not generate an Xcode project.' >&2
+            exit 1
+          fi
+          SCHEME="$(xcodebuild -list -json -project "$XCODEPROJ" | python3 -c 'import json,sys; d=json.load(sys.stdin); p=next(iter(d.get("project",{}).get("schemes",[])), ""); print(p)')"
+          if [ -z "$SCHEME" ]; then
+            echo 'No shared Xcode scheme found; keeping the generated Xcode project as an artifact.'
+            exit 0
+          fi
+          xcodebuild -project "$XCODEPROJ" -scheme "$SCHEME" \
+            -sdk iphonesimulator -configuration Debug \
+            -derivedDataPath "$RUNNER_TEMP/cocos-ios-derived" \
+            CODE_SIGNING_ALLOWED=NO build
+
+      - name: Upload build outputs and Xcode project
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cocos-creator-2.4.13-builds
+          path: ci-output/
+          if-no-files-found: warn
+          compression-level: 1
+          retention-days: 7

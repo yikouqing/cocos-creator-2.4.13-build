@@ -1,0 +1,837 @@
+{
+    "version": "1.0.0",
+    "modules": {
+        "ajmj": {
+            "name": "ajmj",
+            "bundle": "ajmj",
+            "version": "1.0.1",
+            "resource": "eaf6f",
+            "priority": 1,
+            "depend": []
+        },
+        "bj": {
+            "name": "bj",
+            "bundle": "bj",
+            "version": "1.0.1",
+            "resource": "7fa10",
+            "priority": 1,
+            "depend": []
+        },
+        "bjj": {
+            "name": "bjj",
+            "bundle": "bjj",
+            "version": "1.0.1",
+            "resource": "487d9",
+            "priority": 1,
+            "depend": []
+        },
+        "bpmj": {
+            "name": "bpmj",
+            "bundle": "bpmj",
+            "version": "1.0.2",
+            "resource": "28191",
+            "priority": 1,
+            "depend": []
+        },
+        "brlhd": {
+            "name": "brlhd",
+            "bundle": "brlhd",
+            "version": "1.0.1",
+            "resource": "51d02",
+            "priority": 1,
+            "depend": []
+        },
+        "brnn": {
+            "name": "brnn",
+            "bundle": "brnn",
+            "version": "1.0.1",
+            "resource": "da9fc",
+            "priority": 1,
+            "depend": []
+        },
+        "cd": {
+            "name": "cd",
+            "bundle": "cd",
+            "version": "1.0.1",
+            "resource": "92bb1",
+            "priority": 1,
+            "depend": []
+        },
+        "cjsjy": {
+            "name": "cjsjy",
+            "bundle": "cjsjy",
+            "version": "1.0.1",
+            "resource": "ea037",
+            "priority": 1,
+            "depend": []
+        },
+        "cnjj": {
+            "name": "cnjj",
+            "bundle": "cnjj",
+            "version": "1.0.1",
+            "resource": "9bcd3",
+            "priority": 1,
+            "depend": []
+        },
+        "cx": {
+            "name": "cx",
+            "bundle": "cx",
+            "version": "1.0.1",
+            "resource": "482b3",
+            "priority": 1,
+            "depend": []
+        },
+        "ddz": {
+            "name": "ddz",
+            "bundle": "ddz",
+            "version": "1.0.1",
+            "resource": "a9755",
+            "priority": 1,
+            "depend": []
+        },
+        "dgn": {
+            "name": "dgn",
+            "bundle": "dgn",
+            "version": "1.0.1",
+            "resource": "d762e",
+            "priority": 1,
+            "depend": []
+        },
+        "dlback": {
+            "name": "dlback",
+            "bundle": "dlback",
+            "version": "1.0.2",
+            "resource": "9bd83",
+            "priority": 1,
+            "depend": []
+        },
+        "dlbunny": {
+            "name": "dlbunny",
+            "bundle": "dlbunny",
+            "version": "1.0.2",
+            "resource": "05b03",
+            "priority": 1,
+            "depend": []
+        },
+        "dlby": {
+            "name": "dlby",
+            "bundle": "dlby",
+            "version": "1.0.2",
+            "resource": "e7ecb",
+            "priority": 1,
+            "depend": []
+        },
+        "dlchun": {
+            "name": "dlchun",
+            "bundle": "dlchun",
+            "version": "1.0.2",
+            "resource": "fda54",
+            "priority": 1,
+            "depend": []
+        },
+        "dlgreen": {
+            "name": "dlgreen",
+            "bundle": "dlgreen",
+            "version": "1.0.2",
+            "resource": "80a6b",
+            "priority": 1,
+            "depend": []
+        },
+        "dllanse": {
+            "name": "dllanse",
+            "bundle": "dllanse",
+            "version": "1.0.2",
+            "resource": "a791e",
+            "priority": 1,
+            "depend": []
+        },
+        "dlmoyin": {
+            "name": "dlmoyin",
+            "bundle": "dlmoyin",
+            "version": "1.0.2",
+            "resource": "0f1ab",
+            "priority": 1,
+            "depend": []
+        },
+        "dlpanda": {
+            "name": "dlpanda",
+            "bundle": "dlpanda",
+            "version": "1.0.2",
+            "resource": "f24a8",
+            "priority": 1,
+            "depend": []
+        },
+        "dlqingxin": {
+            "name": "dlqingxin",
+            "bundle": "dlqingxin",
+            "version": "1.0.2",
+            "resource": "28693",
+            "priority": 1,
+            "depend": []
+        },
+        "dlred": {
+            "name": "dlred",
+            "bundle": "dlred",
+            "version": "1.0.2",
+            "resource": "5d662",
+            "priority": 1,
+            "depend": []
+        },
+        "dlsea": {
+            "name": "dlsea",
+            "bundle": "dlsea",
+            "version": "1.0.2",
+            "resource": "1befe",
+            "priority": 1,
+            "depend": []
+        },
+        "dlwhite": {
+            "name": "dlwhite",
+            "bundle": "dlwhite",
+            "version": "1.0.2",
+            "resource": "b7f1f",
+            "priority": 1,
+            "depend": []
+        },
+        "dlwinered": {
+            "name": "dlwinered",
+            "bundle": "dlwinered",
+            "version": "1.0.2",
+            "resource": "65488",
+            "priority": 1,
+            "depend": []
+        },
+        "dlwoods": {
+            "name": "dlwoods",
+            "bundle": "dlwoods",
+            "version": "1.0.2",
+            "resource": "453a4",
+            "priority": 1,
+            "depend": []
+        },
+        "dzpk": {
+            "name": "dzpk",
+            "bundle": "dzpk",
+            "version": "1.0.1",
+            "resource": "1003d",
+            "priority": 1,
+            "depend": []
+        },
+        "ensmj": {
+            "name": "ensmj",
+            "bundle": "ensmj",
+            "version": "1.0.1",
+            "resource": "7dd96",
+            "priority": 1,
+            "depend": []
+        },
+        "erpdk": {
+            "name": "erpdk",
+            "bundle": "erpdk",
+            "version": "1.0.1",
+            "resource": "88e40",
+            "priority": 1,
+            "depend": []
+        },
+        "fcmj": {
+            "name": "fcmj",
+            "bundle": "fcmj",
+            "version": "1.0.1",
+            "resource": "84a79",
+            "priority": 1,
+            "depend": []
+        },
+        "fjsss": {
+            "name": "fjsss",
+            "bundle": "fjsss",
+            "version": "1.0.2",
+            "resource": "65c2b",
+            "priority": 1,
+            "depend": []
+        },
+        "fxj": {
+            "name": "fxj",
+            "bundle": "fxj",
+            "version": "1.0.1",
+            "resource": "41664",
+            "priority": 1,
+            "depend": []
+        },
+        "gct": {
+            "name": "gct",
+            "bundle": "gct",
+            "version": "1.0.1",
+            "resource": "19912",
+            "priority": 1,
+            "depend": []
+        },
+        "gd": {
+            "name": "gd",
+            "bundle": "gd",
+            "version": "1.0.1",
+            "resource": "851b7",
+            "priority": 1,
+            "depend": []
+        },
+        "gdtdh": {
+            "name": "gdtdh",
+            "bundle": "gdtdh",
+            "version": "1.0.1",
+            "resource": "d9297",
+            "priority": 1,
+            "depend": []
+        },
+        "gdybz": {
+            "name": "gdybz",
+            "bundle": "gdybz",
+            "version": "1.0.1",
+            "resource": "80a99",
+            "priority": 1,
+            "depend": []
+        },
+        "hlmj": {
+            "name": "hlmj",
+            "bundle": "hlmj",
+            "version": "1.0.1",
+            "resource": "b3f0c",
+            "priority": 1,
+            "depend": []
+        },
+        "hz": {
+            "name": "hz",
+            "bundle": "hz",
+            "version": "1.0.1",
+            "resource": "7e7ca",
+            "priority": 1,
+            "depend": []
+        },
+        "hzmj": {
+            "name": "hzmj",
+            "bundle": "hzmj",
+            "version": "1.0.1",
+            "resource": "d3421",
+            "priority": 1,
+            "depend": []
+        },
+        "jgptj": {
+            "name": "jgptj",
+            "bundle": "jgptj",
+            "version": "1.0.1",
+            "resource": "22255",
+            "priority": 1,
+            "depend": []
+        },
+        "jgttz": {
+            "name": "jgttz",
+            "bundle": "jgttz",
+            "version": "1.0.1",
+            "resource": "5ebf9",
+            "priority": 1,
+            "depend": []
+        },
+        "lamj": {
+            "name": "lamj",
+            "bundle": "lamj",
+            "version": "1.0.2",
+            "resource": "c583e",
+            "priority": 1,
+            "depend": []
+        },
+        "lseqs": {
+            "name": "lseqs",
+            "bundle": "lseqs",
+            "version": "1.0.1",
+            "resource": "e0529",
+            "priority": 1,
+            "depend": []
+        },
+        "lsmj": {
+            "name": "lsmj",
+            "bundle": "lsmj",
+            "version": "1.0.2",
+            "resource": "bfdff",
+            "priority": 1,
+            "depend": []
+        },
+        "lspdk": {
+            "name": "lspdk",
+            "bundle": "lspdk",
+            "version": "1.0.1",
+            "resource": "6780e",
+            "priority": 1,
+            "depend": []
+        },
+        "lyc": {
+            "name": "lyc",
+            "bundle": "lyc",
+            "version": "1.0.1",
+            "resource": "41f7c",
+            "priority": 1,
+            "depend": []
+        },
+        "masmj": {
+            "name": "masmj",
+            "bundle": "masmj",
+            "version": "1.0.1",
+            "resource": "2f755",
+            "priority": 1,
+            "depend": []
+        },
+        "mhxl": {
+            "name": "mhxl",
+            "bundle": "mhxl",
+            "version": "1.0.2",
+            "resource": "af6fc",
+            "priority": 1,
+            "depend": []
+        },
+        "mjnn": {
+            "name": "mjnn",
+            "bundle": "mjnn",
+            "version": "1.0.1",
+            "resource": "ea7da",
+            "priority": 1,
+            "depend": []
+        },
+        "mnback": {
+            "name": "mnback",
+            "bundle": "mnback",
+            "version": "1.0.1",
+            "resource": "810d7",
+            "priority": 1,
+            "depend": []
+        },
+        "mnbunnybirl": {
+            "name": "mnbunnybirl",
+            "bundle": "mnbunnybirl",
+            "version": "1.0.1",
+            "resource": "ca11b",
+            "priority": 1,
+            "depend": []
+        },
+        "mnby": {
+            "name": "mnby",
+            "bundle": "mnby",
+            "version": "1.0.1",
+            "resource": "bdd72",
+            "priority": 1,
+            "depend": []
+        },
+        "mnchun": {
+            "name": "mnchun",
+            "bundle": "mnchun",
+            "version": "1.0.1",
+            "resource": "0dd86",
+            "priority": 1,
+            "depend": []
+        },
+        "mngreen": {
+            "name": "mngreen",
+            "bundle": "mngreen",
+            "version": "1.0.1",
+            "resource": "38f7e",
+            "priority": 1,
+            "depend": []
+        },
+        "mnlanse": {
+            "name": "mnlanse",
+            "bundle": "mnlanse",
+            "version": "1.0.1",
+            "resource": "dae1e",
+            "priority": 1,
+            "depend": []
+        },
+        "mnmoyin": {
+            "name": "mnmoyin",
+            "bundle": "mnmoyin",
+            "version": "1.0.1",
+            "resource": "66e65",
+            "priority": 1,
+            "depend": []
+        },
+        "mnpanda": {
+            "name": "mnpanda",
+            "bundle": "mnpanda",
+            "version": "1.0.1",
+            "resource": "6f8a8",
+            "priority": 1,
+            "depend": []
+        },
+        "mnpdk": {
+            "name": "mnpdk",
+            "bundle": "mnpdk",
+            "version": "1.0.1",
+            "resource": "a8763",
+            "priority": 1,
+            "depend": []
+        },
+        "mnqingxin": {
+            "name": "mnqingxin",
+            "bundle": "mnqingxin",
+            "version": "1.0.1",
+            "resource": "ea6fc",
+            "priority": 1,
+            "depend": []
+        },
+        "mnred": {
+            "name": "mnred",
+            "bundle": "mnred",
+            "version": "1.0.1",
+            "resource": "dfe66",
+            "priority": 1,
+            "depend": []
+        },
+        "mnsea": {
+            "name": "mnsea",
+            "bundle": "mnsea",
+            "version": "1.0.1",
+            "resource": "0478a",
+            "priority": 1,
+            "depend": []
+        },
+        "mnwhite": {
+            "name": "mnwhite",
+            "bundle": "mnwhite",
+            "version": "1.0.1",
+            "resource": "74e87",
+            "priority": 1,
+            "depend": []
+        },
+        "mnwinered": {
+            "name": "mnwinered",
+            "bundle": "mnwinered",
+            "version": "1.0.1",
+            "resource": "2df9f",
+            "priority": 1,
+            "depend": []
+        },
+        "mnwoods": {
+            "name": "mnwoods",
+            "bundle": "mnwoods",
+            "version": "1.0.1",
+            "resource": "76ff4",
+            "priority": 1,
+            "depend": []
+        },
+        "nn": {
+            "name": "nn",
+            "bundle": "nn",
+            "version": "1.0.1",
+            "resource": "9f76b",
+            "priority": 1,
+            "depend": []
+        },
+        "nnwjy": {
+            "name": "nnwjy",
+            "bundle": "nnwjy",
+            "version": "1.0.1",
+            "resource": "d6fad",
+            "priority": 1,
+            "depend": []
+        },
+        "pdk": {
+            "name": "pdk",
+            "bundle": "pdk",
+            "version": "1.0.1",
+            "resource": "81b9f",
+            "priority": 1,
+            "depend": []
+        },
+        "ptj": {
+            "name": "ptj",
+            "bundle": "ptj",
+            "version": "1.0.1",
+            "resource": "683f7",
+            "priority": 1,
+            "depend": []
+        },
+        "pzhmj": {
+            "name": "pzhmj",
+            "bundle": "pzhmj",
+            "version": "1.0.1",
+            "resource": "25e69",
+            "priority": 1,
+            "depend": []
+        },
+        "qjmj": {
+            "name": "qjmj",
+            "bundle": "qjmj",
+            "version": "1.0.1",
+            "resource": "c866f",
+            "priority": 1,
+            "depend": []
+        },
+        "qzmj": {
+            "name": "qzmj",
+            "bundle": "qzmj",
+            "version": "1.0.1",
+            "resource": "52718",
+            "priority": 1,
+            "depend": []
+        },
+        "qzsss": {
+            "name": "qzsss",
+            "bundle": "qzsss",
+            "version": "1.0.1",
+            "resource": "18e23",
+            "priority": 1,
+            "depend": []
+        },
+        "rcssg": {
+            "name": "rcssg",
+            "bundle": "rcssg",
+            "version": "1.0.1",
+            "resource": "faed1",
+            "priority": 1,
+            "depend": []
+        },
+        "sdb": {
+            "name": "sdb",
+            "bundle": "sdb",
+            "version": "1.0.1",
+            "resource": "da771",
+            "priority": 1,
+            "depend": []
+        },
+        "sg": {
+            "name": "sg",
+            "bundle": "sg",
+            "version": "1.0.1",
+            "resource": "834d3",
+            "priority": 1,
+            "depend": []
+        },
+        "sgbjh": {
+            "name": "sgbjh",
+            "bundle": "sgbjh",
+            "version": "1.0.1",
+            "resource": "37386",
+            "priority": 1,
+            "depend": []
+        },
+        "sz": {
+            "name": "sz",
+            "bundle": "sz",
+            "version": "1.0.1",
+            "resource": "b44f6",
+            "priority": 1,
+            "depend": []
+        },
+        "tdk": {
+            "name": "tdk",
+            "bundle": "tdk",
+            "version": "1.0.1",
+            "resource": "7d576",
+            "priority": 1,
+            "depend": []
+        },
+        "tsmj": {
+            "name": "tsmj",
+            "bundle": "tsmj",
+            "version": "1.0.1",
+            "resource": "2a1c6",
+            "priority": 1,
+            "depend": []
+        },
+        "ttz": {
+            "name": "ttz",
+            "bundle": "ttz",
+            "version": "1.0.1",
+            "resource": "720cf",
+            "priority": 1,
+            "depend": []
+        },
+        "tw": {
+            "name": "tw",
+            "bundle": "tw",
+            "version": "1.0.1",
+            "resource": "70587",
+            "priority": 1,
+            "depend": []
+        },
+        "unback": {
+            "name": "unback",
+            "bundle": "unback",
+            "version": "1.0.1",
+            "resource": "9ed17",
+            "priority": 1,
+            "depend": []
+        },
+        "unbunny": {
+            "name": "unbunny",
+            "bundle": "unbunny",
+            "version": "1.0.1",
+            "resource": "62e9e",
+            "priority": 1,
+            "depend": []
+        },
+        "unby": {
+            "name": "unby",
+            "bundle": "unby",
+            "version": "1.0.1",
+            "resource": "efbe9",
+            "priority": 1,
+            "depend": []
+        },
+        "unchun": {
+            "name": "unchun",
+            "bundle": "unchun",
+            "version": "1.0.1",
+            "resource": "dfe4e",
+            "priority": 1,
+            "depend": []
+        },
+        "ungreen": {
+            "name": "ungreen",
+            "bundle": "ungreen",
+            "version": "1.0.1",
+            "resource": "caedf",
+            "priority": 1,
+            "depend": []
+        },
+        "unlanse": {
+            "name": "unlanse",
+            "bundle": "unlanse",
+            "version": "1.0.1",
+            "resource": "c4c63",
+            "priority": 1,
+            "depend": []
+        },
+        "unmoyin": {
+            "name": "unmoyin",
+            "bundle": "unmoyin",
+            "version": "1.0.1",
+            "resource": "9a074",
+            "priority": 1,
+            "depend": []
+        },
+        "unpanda": {
+            "name": "unpanda",
+            "bundle": "unpanda",
+            "version": "1.0.1",
+            "resource": "38896",
+            "priority": 1,
+            "depend": []
+        },
+        "unqingxin": {
+            "name": "unqingxin",
+            "bundle": "unqingxin",
+            "version": "1.0.1",
+            "resource": "5b32e",
+            "priority": 1,
+            "depend": []
+        },
+        "unred": {
+            "name": "unred",
+            "bundle": "unred",
+            "version": "1.0.1",
+            "resource": "739a2",
+            "priority": 1,
+            "depend": []
+        },
+        "unsea": {
+            "name": "unsea",
+            "bundle": "unsea",
+            "version": "1.0.1",
+            "resource": "b738f",
+            "priority": 1,
+            "depend": []
+        },
+        "unwinered": {
+            "name": "unwinered",
+            "bundle": "unwinered",
+            "version": "1.0.1",
+            "resource": "d3078",
+            "priority": 1,
+            "depend": []
+        },
+        "unwoods": {
+            "name": "unwoods",
+            "bundle": "unwoods",
+            "version": "1.0.1",
+            "resource": "ffd0c",
+            "priority": 1,
+            "depend": []
+        },
+        "wwmj": {
+            "name": "wwmj",
+            "bundle": "wwmj",
+            "version": "1.0.1",
+            "resource": "b7839",
+            "priority": 1,
+            "depend": []
+        },
+        "xcmj": {
+            "name": "xcmj",
+            "bundle": "xcmj",
+            "version": "1.0.1",
+            "resource": "60f79",
+            "priority": 1,
+            "depend": []
+        },
+        "xgpdk": {
+            "name": "xgpdk",
+            "bundle": "xgpdk",
+            "version": "1.0.1",
+            "resource": "91ea3",
+            "priority": 1,
+            "depend": []
+        },
+        "xz": {
+            "name": "xz",
+            "bundle": "xz",
+            "version": "1.0.1",
+            "resource": "6446b",
+            "priority": 1,
+            "depend": []
+        },
+        "ybmj": {
+            "name": "ybmj",
+            "bundle": "ybmj",
+            "version": "1.0.1",
+            "resource": "8d3cd",
+            "priority": 1,
+            "depend": []
+        },
+        "ydr": {
+            "name": "ydr",
+            "bundle": "ydr",
+            "version": "1.0.1",
+            "resource": "9584c",
+            "priority": 1,
+            "depend": []
+        },
+        "yjbpx": {
+            "name": "yjbpx",
+            "bundle": "yjbpx",
+            "version": "1.0.1",
+            "resource": "57dac",
+            "priority": 1,
+            "depend": []
+        },
+        "zgz": {
+            "name": "zgz",
+            "bundle": "zgz",
+            "version": "1.0.1",
+            "resource": "7cb99",
+            "priority": 1,
+            "depend": []
+        },
+        "zlm": {
+            "name": "zlm",
+            "bundle": "zlm",
+            "version": "1.0.1",
+            "resource": "e677e",
+            "priority": 1,
+            "depend": []
+        },
+        "ezgdt": {
+            "name": "ezgdt",
+            "bundle": "ezgdt",
+            "version": "1.0.1",
+            "resource": "61610",
+            "priority": 1,
+            "depend": []
+        }
+    }
+}

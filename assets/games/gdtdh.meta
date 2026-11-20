@@ -1,0 +1,29 @@
+{
+  "ver": "1.1.3",
+  "uuid": "691375bc-f7e2-4170-b409-fdf9d9746215",
+  "importer": "folder",
+  "isBundle": true,
+  "bundleName": "",
+  "priority": 1,
+  "compressionType": {
+    "android": "default",
+    "ios": "default",
+    "openharmony": "default"
+  },
+  "optimizeHotUpdate": {
+    "android": false,
+    "ios": false,
+    "openharmony": false
+  },
+  "inlineSpriteFrames": {
+    "android": false,
+    "ios": false,
+    "openharmony": false
+  },
+  "isRemoteBundle": {
+    "android": true,
+    "ios": true,
+    "openharmony": true
+  },
+  "subMetas": {}
+}

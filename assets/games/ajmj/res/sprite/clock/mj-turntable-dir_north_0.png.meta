@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "f37a44de-ce98-4a61-a57a-f89fd52b5d21",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 25,
+  "height": 25,
+  "platformSettings": {},
+  "subMetas": {
+    "mj-turntable-dir_north_0": {
+      "ver": "1.0.6",
+      "uuid": "52770cdd-1351-4f51-b6c4-3da6a47fde04",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "f37a44de-ce98-4a61-a57a-f89fd52b5d21",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 25,
+      "height": 25,
+      "rawWidth": 25,
+      "rawHeight": 25,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

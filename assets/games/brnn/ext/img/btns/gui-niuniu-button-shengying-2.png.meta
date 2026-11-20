@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "c75fb79e-b044-43ec-8176-80c6ee38818c",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 192,
+  "height": 79,
+  "platformSettings": {},
+  "subMetas": {
+    "gui-niuniu-button-shengying-2": {
+      "ver": "1.0.6",
+      "uuid": "fbf84203-746f-42af-a4f4-47fc504dfb78",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "c75fb79e-b044-43ec-8176-80c6ee38818c",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -1,
+      "offsetY": -1.5,
+      "trimX": 23,
+      "trimY": 16,
+      "width": 144,
+      "height": 50,
+      "rawWidth": 192,
+      "rawHeight": 79,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

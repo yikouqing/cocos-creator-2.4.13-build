@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "301bad54-a6b3-4902-a6b2-1faa6fffa105",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 99,
+  "height": 144,
+  "platformSettings": {},
+  "subMetas": {
+    "mj_card-card-down_stand_bg_2": {
+      "ver": "1.0.6",
+      "uuid": "168a8e5a-338c-4be8-8424-4b52b1bfe04e",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "301bad54-a6b3-4902-a6b2-1faa6fffa105",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 99,
+      "height": 144,
+      "rawWidth": 99,
+      "rawHeight": 144,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

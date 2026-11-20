@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "e7941bc1-8d3a-4c65-90e8-35d1169d4345",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 41,
+  "height": 55,
+  "platformSettings": {},
+  "subMetas": {
+    "mj_card-bai_mark-joker": {
+      "ver": "1.0.6",
+      "uuid": "40cfd13f-1888-4447-9571-43d101a42617",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "e7941bc1-8d3a-4c65-90e8-35d1169d4345",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0.5,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 41,
+      "height": 54,
+      "rawWidth": 41,
+      "rawHeight": 55,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

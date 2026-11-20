@@ -1,0 +1,57 @@
+{
+"skeleton": {
+	"hash": "mJeBUZ3gHEq0pd+//kkJWh7Agqg",
+	"spine": "3.8.75",
+	"x": -43,
+	"y": -48.6,
+	"width": 87,
+	"height": 180.59,
+	"images": "C:/Users/aa/Desktop/小动画",
+	"audio": ""
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "shou", "parent": "root" }
+],
+"slots": [
+	{ "name": "jiantou", "bone": "root", "attachment": "jiantou" },
+	{ "name": "shou", "bone": "shou", "attachment": "shou" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"jiantou": {
+				"jiantou": { "x": 0.5, "y": 98, "width": 75, "height": 68 }
+			},
+			"shou": {
+				"shou": { "x": 0.5, "y": -2.6, "width": 87, "height": 92 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {
+		"bones": {
+			"shou": {
+				"rotate": [
+					{ "angle": -8.21, "curve": 0.25, "c3": 0, "c4": 0.6 },
+					{ "time": 0.1, "angle": -53.41, "curve": 0.25, "c3": 0, "c4": 0.6 },
+					{ "time": 0.2, "angle": -8.21, "curve": 0.25, "c3": 0, "c4": 0.6 },
+					{ "time": 0.3, "angle": -53.41, "curve": 0.25, "c3": 0, "c4": 0.6 },
+					{ "time": 0.4, "angle": -8.21 }
+				],
+				"translate": [
+					{}
+				],
+				"scale": [
+					{}
+				],
+				"shear": [
+					{}
+				]
+			}
+		}
+	}
+}
+}

@@ -1,0 +1,107 @@
+{
+"skeleton": {
+	"hash": "n0XkTZHnoLKvlipVnvqTOxqAeRE",
+	"spine": "3.8.75",
+	"x": -551,
+	"y": -57,
+	"width": 1102,
+	"height": 115,
+	"images": "D:/BaiduNetdiskDownload/UI特效合集【序列】/UI特效合集【序列】/101-200/bipai",
+	"audio": ""
+},
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "png", "bone": "root", "attachment": "score_anim-dzks_xinxi_jingtai_0" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"png": {
+				"score_anim-dzks_xinxi_00": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_01": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_02": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_03": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_04": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_05": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_06": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_07": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_08": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_09": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_10": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_11": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_12": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_13": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_14": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_15": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_16": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_17": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_18": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_19": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_20": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_21": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_22": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_23": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_24": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_25": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_26": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_27": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_28": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_29": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_30": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_31": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_32": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_33": { "x": 0.5, "width": 1631, "height": 230 },
+				"score_anim-dzks_xinxi_jingtai_0": { "y": 0.5, "width": 1102, "height": 115 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {
+		"slots": {
+			"png": {
+				"attachment": [
+					{ "name": "score_anim-dzks_xinxi_00" },
+					{ "time": 0.0333, "name": "score_anim-dzks_xinxi_01" },
+					{ "time": 0.0667, "name": "score_anim-dzks_xinxi_02" },
+					{ "time": 0.1, "name": "score_anim-dzks_xinxi_03" },
+					{ "time": 0.1333, "name": "score_anim-dzks_xinxi_04" },
+					{ "time": 0.1667, "name": "score_anim-dzks_xinxi_05" },
+					{ "time": 0.2, "name": "score_anim-dzks_xinxi_06" },
+					{ "time": 0.2333, "name": "score_anim-dzks_xinxi_07" },
+					{ "time": 0.2667, "name": "score_anim-dzks_xinxi_08" },
+					{ "time": 0.3, "name": "score_anim-dzks_xinxi_09" },
+					{ "time": 0.3333, "name": "score_anim-dzks_xinxi_10" },
+					{ "time": 0.3667, "name": "score_anim-dzks_xinxi_11" },
+					{ "time": 0.4, "name": "score_anim-dzks_xinxi_12" },
+					{ "time": 0.4333, "name": "score_anim-dzks_xinxi_13" },
+					{ "time": 0.4667, "name": "score_anim-dzks_xinxi_14" },
+					{ "time": 0.5, "name": "score_anim-dzks_xinxi_15" },
+					{ "time": 0.5333, "name": "score_anim-dzks_xinxi_16" },
+					{ "time": 0.5667, "name": "score_anim-dzks_xinxi_17" },
+					{ "time": 0.6, "name": "score_anim-dzks_xinxi_18" },
+					{ "time": 0.6333, "name": "score_anim-dzks_xinxi_19" },
+					{ "time": 0.6667, "name": "score_anim-dzks_xinxi_20" },
+					{ "time": 0.7, "name": "score_anim-dzks_xinxi_21" },
+					{ "time": 0.7333, "name": "score_anim-dzks_xinxi_22" },
+					{ "time": 0.7667, "name": "score_anim-dzks_xinxi_23" },
+					{ "time": 0.8, "name": "score_anim-dzks_xinxi_24" },
+					{ "time": 0.8333, "name": "score_anim-dzks_xinxi_25" },
+					{ "time": 0.8667, "name": "score_anim-dzks_xinxi_26" },
+					{ "time": 0.9, "name": "score_anim-dzks_xinxi_27" },
+					{ "time": 0.9333, "name": "score_anim-dzks_xinxi_28" },
+					{ "time": 0.9667, "name": "score_anim-dzks_xinxi_29" },
+					{ "time": 1, "name": "score_anim-dzks_xinxi_30" },
+					{ "time": 1.0333, "name": "score_anim-dzks_xinxi_31" },
+					{ "time": 1.0667, "name": "score_anim-dzks_xinxi_32" },
+					{ "time": 1.1, "name": "score_anim-dzks_xinxi_33" },
+					{ "time": 1.1333, "name": "score_anim-dzks_xinxi_jingtai_0" }
+				]
+			}
+		}
+	}
+}
+}
