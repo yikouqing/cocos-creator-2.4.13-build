@@ -26,6 +26,11 @@ jobs:
           lfs: false
           submodules: false
 
+      - name: Set up Python 3.9 for cocos.py
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
       - name: Set up Android SDK
         if: ${{ inputs.platform == 'android' }}
         uses: android-actions/setup-android@v3
@@ -118,7 +123,7 @@ jobs:
               break
             fi
             echo "=== $PLATFORM build heartbeat $i $(date -u '+%Y-%m-%dT%H:%M:%SZ') ==="
-            ps -A -o pid=,ppid=,etime=,%cpu=,%mem=,stat=,command= | grep -E '[C]ocosCreator|[C]ocos Creator Helper' | head -10 || true
+            ps -A -o pid=,ppid=,etime=,%cpu=,%mem=,stat=,command= | grep -E '[C]ocosCreator|[C]ocos Creator Helper|[p]ython' | head -15 || true
             for p in "$GITHUB_WORKSPACE/library" "$GITHUB_WORKSPACE/temp" "$OUT"; do
               if [ -d "$p" ]; then du -sh "$p"; else echo "$p not created"; fi
             done
