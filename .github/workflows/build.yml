@@ -1,4 +1,4 @@
-name: Cocos Creator 2.4.13 Android and iOS builds
+name: Cocos Creator 2.4.13 Android APK
 
 on:
   workflow_dispatch:
@@ -7,9 +7,9 @@ permissions:
   contents: read
 
 jobs:
-  build-native:
+  build-android:
     runs-on: macos-15-intel
-    timeout-minutes: 60
+    timeout-minutes: 110
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
@@ -18,16 +18,16 @@ jobs:
           submodules: false
 
       - name: Set up Android SDK
-        id: setup_android_sdk
         uses: android-actions/setup-android@v3
-        continue-on-error: true
+        with:
+          packages: platform-tools
+          accept-android-sdk-licenses: true
 
       - name: Install Android SDK/NDK components
-        if: ${{ steps.setup_android_sdk.outcome == 'success' }}
-        continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 15
         shell: bash
         run: |
+          set -euo pipefail
           yes | sdkmanager --licenses >/dev/null || true
           sdkmanager --install \
             "platform-tools" \
@@ -37,6 +37,7 @@ jobs:
             "cmake;3.10.2.4988404"
 
       - name: Install Cocos Creator 2.4.13
+        timeout-minutes: 15
         shell: bash
         run: |
           set -euo pipefail
@@ -55,54 +56,71 @@ jobs:
           echo "CREATOR_BIN=$APP/Contents/MacOS/CocosCreator" >> "$GITHUB_ENV"
           echo "Cocos Creator app: $APP"
 
+      - name: Set up Java for Android build
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '8'
+
       - name: Build Android debug APK
-        id: android
-        timeout-minutes: 20
-        continue-on-error: true
+        timeout-minutes: 62
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p "$GITHUB_WORKSPACE/ci-output/android"
-          "$CREATOR_BIN" -- --nologin --project "$GITHUB_WORKSPACE" \
-            --build "platform=android;debug=false;buildPath=$GITHUB_WORKSPACE/ci-output/android"
-          GRADLEW="$(find "$GITHUB_WORKSPACE/ci-output/android" -type f -name gradlew -print -quit)"
+          OUT="$GITHUB_WORKSPACE/ci-output/android"
+          DIAG="$GITHUB_WORKSPACE/ci-output/diagnostics"
+          LOG_FILE="$DIAG/creator-android.log"
+          mkdir -p "$OUT" "$DIAG"
+          BUILD_ARGS="platform=android;debug=false;buildPath=$OUT"
+          echo "Starting Cocos Creator 2.4.13 Android build with --nologin."
+          "$CREATOR_BIN" -- --nologin --project "$GITHUB_WORKSPACE" --build "$BUILD_ARGS" >"$LOG_FILE" 2>&1 &
+          CREATOR_PID=$!
+          trap 'kill -TERM "$CREATOR_PID" 2>/dev/null || true' EXIT
+          for i in $(seq 1 29); do
+            sleep 120
+            if ! kill -0 "$CREATOR_PID" 2>/dev/null; then
+              break
+            fi
+            echo "=== Android build heartbeat $i $(date -u '+%Y-%m-%dT%H:%M:%SZ') ==="
+            ps -A -o pid=,ppid=,etime=,%cpu=,%mem=,stat=,command= | grep -E '[C]ocosCreator|[C]ocos Creator|[G]radleDaemon' | head -20 || true
+            for p in "$GITHUB_WORKSPACE/library" "$GITHUB_WORKSPACE/temp" "$OUT"; do
+              if [ -d "$p" ]; then du -sh "$p"; else echo "$p not created"; fi
+            done
+            tail -n 20 "$LOG_FILE" || true
+            if [ "$i" = "5" ] || [ "$i" = "15" ] || [ "$i" = "25" ]; then
+              screencapture -x "$DIAG/creator-screen-$i.png" || true
+            fi
+          done
+          if kill -0 "$CREATOR_PID" 2>/dev/null; then
+            echo 'Creator remained active after 58 minutes; stopping this Android-only diagnostic build.' >&2
+            kill -TERM "$CREATOR_PID" 2>/dev/null || true
+            sleep 10
+            kill -KILL "$CREATOR_PID" 2>/dev/null || true
+            wait "$CREATOR_PID" || true
+            exit 124
+          fi
+          wait "$CREATOR_PID"
+          GRADLEW="$(find "$OUT" -type f -name gradlew -print -quit)"
           if [ -z "$GRADLEW" ]; then
-            echo 'Creator did not generate a Gradle wrapper; keeping the generated Android project as an artifact.'
-            exit 0
+            echo 'Creator did not generate a Gradle wrapper.' >&2
+            find "$OUT" -maxdepth 5 -type f -print | head -100
+            exit 1
           fi
           chmod +x "$GRADLEW"
           (cd "$(dirname "$GRADLEW")" && ./gradlew assembleDebug --no-daemon)
-
-      - name: Build unsigned iOS simulator app
-        id: ios
-        timeout-minutes: 20
-        continue-on-error: true
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p "$GITHUB_WORKSPACE/ci-output/ios"
-          "$CREATOR_BIN" -- --nologin --project "$GITHUB_WORKSPACE" \
-            --build "platform=ios;debug=false;buildPath=$GITHUB_WORKSPACE/ci-output/ios"
-          XCODEPROJ="$(find "$GITHUB_WORKSPACE/ci-output/ios" -type d -name '*.xcodeproj' -print -quit)"
-          if [ -z "$XCODEPROJ" ]; then
-            echo 'Creator did not generate an Xcode project.' >&2
+          APK="$(find "$OUT" -type f -name '*.apk' -print -quit)"
+          if [ -z "$APK" ] || [ ! -s "$APK" ]; then
+            echo 'Gradle completed without producing an APK.' >&2
             exit 1
           fi
-          SCHEME="$(xcodebuild -list -json -project "$XCODEPROJ" | python3 -c 'import json,sys; d=json.load(sys.stdin); p=next(iter(d.get("project",{}).get("schemes",[])), ""); print(p)')"
-          if [ -z "$SCHEME" ]; then
-            echo 'No shared Xcode scheme found; keeping the generated Xcode project as an artifact.'
-            exit 0
-          fi
-          xcodebuild -project "$XCODEPROJ" -scheme "$SCHEME" \
-            -sdk iphonesimulator -configuration Debug \
-            -derivedDataPath "$RUNNER_TEMP/cocos-ios-derived" \
-            CODE_SIGNING_ALLOWED=NO build
+          echo "APK produced: $APK"
+          ls -lh "$APK"
 
-      - name: Upload Android/iOS outputs and logs
+      - name: Upload Android APK or diagnostic logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cocos-creator-2.4.13-android-ios
+          name: cocos-creator-2.4.13-android-apk
           path: ci-output/
           if-no-files-found: warn
           compression-level: 1
