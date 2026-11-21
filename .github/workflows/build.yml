@@ -1,13 +1,22 @@
-name: Cocos Creator 2.4.13 Android APK
+name: Cocos Creator 2.4.13 Build (Android / iOS)
 
 on:
   workflow_dispatch:
+    inputs:
+      platform:
+        description: '选择打包平台'
+        required: true
+        default: 'android'
+        type: choice
+        options:
+          - android
+          - ios
 
 permissions:
   contents: read
 
 jobs:
-  build-android:
+  build:
     runs-on: macos-15-intel
     timeout-minutes: 75
     steps:
@@ -18,12 +27,14 @@ jobs:
           submodules: false
 
       - name: Set up Android SDK
+        if: ${{ inputs.platform == 'android' }}
         uses: android-actions/setup-android@v3
         with:
           packages: platform-tools
           accept-android-sdk-licenses: true
 
       - name: Install Android SDK/NDK components
+        if: ${{ inputs.platform == 'android' }}
         timeout-minutes: 15
         shell: bash
         run: |
@@ -35,6 +46,13 @@ jobs:
             "build-tools;30.0.3" \
             "ndk;21.4.7075529" \
             "cmake;3.10.2.4988404"
+
+      - name: Set up Java for Android build
+        if: ${{ inputs.platform == 'android' }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '8'
 
       - name: Install Cocos Creator 2.4.13
         timeout-minutes: 15
@@ -49,123 +67,136 @@ jobs:
           APP="$(find "$RUNNER_TEMP/cocos-creator" -name 'CocosCreator.app' -type d -print -quit)"
           if [ -z "$APP" ]; then
             echo 'CocosCreator.app was not found in the official archive.' >&2
-            find "$RUNNER_TEMP/cocos-creator" -maxdepth 3 -print | head -100
             exit 1
           fi
           xattr -dr com.apple.quarantine "$APP" || true
           echo "CREATOR_BIN=$APP/Contents/MacOS/CocosCreator" >> "$GITHUB_ENV"
           echo "Cocos Creator app: $APP"
 
-      - name: Set up Java for Android build
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '8'
-
-      - name: Preconfigure Cocos Creator language
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p "$HOME/.CocosCreator"
-          printf '{"language":"zh"}\n' > "$HOME/.CocosCreator/settings.json"
-          cat "$HOME/.CocosCreator/settings.json"
-
-      - name: Build Android debug APK
+      - name: Build ${{ inputs.platform }} package
         timeout-minutes: 55
         shell: bash
         run: |
           set -euo pipefail
-          OUT="$GITHUB_WORKSPACE/ci-output/android"
+          PLATFORM="${{ inputs.platform }}"
+          OUT="$GITHUB_WORKSPACE/ci-output/$PLATFORM"
           DIAG="$GITHUB_WORKSPACE/ci-output/diagnostics"
-          LOG_FILE="$DIAG/creator-android.log"
-          mkdir -p "$OUT" "$DIAG"
-          BUILD_ARGS="platform=android;debug=false;buildPath=$OUT"
-          SDK_ROOT="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-}}"
-          if [ -z "$SDK_ROOT" ]; then
-            echo 'Android SDK root is missing from the runner environment.' >&2
-            exit 1
+          LOG_FILE="$DIAG/creator-$PLATFORM.log"
+          mkdir -p "$OUT" "$DIAG" "$HOME/.CocosCreator" "$HOME/.cocos"
+
+          # 跳过 cocos.py 首次运行统计协议交互询问
+          printf '{"agreement_shown":true,"enable_stat":false}\n' > "$HOME/.cocos/local_cfg.json"
+
+          if [ "$PLATFORM" = "android" ]; then
+            SDK_ROOT="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-}}"
+            NDK_ROOT="$SDK_ROOT/ndk/21.4.7075529"
+            if [ -z "$SDK_ROOT" ] || [ ! -f "$NDK_ROOT/source.properties" ]; then
+              echo "Android SDK/NDK missing: SDK=$SDK_ROOT NDK=$NDK_ROOT" >&2
+              exit 1
+            fi
+            export ANDROID_SDK_ROOT="$SDK_ROOT"
+            export ANDROID_HOME="$SDK_ROOT"
+            export NDK_ROOT
+            export ANDROID_NDK_HOME="$NDK_ROOT"
+            export NDK_HOME="$NDK_ROOT"
+            printf '{"language":"zh","use-default-js-engine":true,"use-default-cpp-engine":true,"android-sdk-root":"%s","ndk-root":"%s"}\n' \
+              "$SDK_ROOT" "$NDK_ROOT" > "$HOME/.CocosCreator/settings.json"
+          else
+            printf '{"language":"zh","use-default-js-engine":true,"use-default-cpp-engine":true}\n' \
+              > "$HOME/.CocosCreator/settings.json"
           fi
-          NDK_ROOT="$SDK_ROOT/ndk/21.4.7075529"
-          if [ ! -f "$NDK_ROOT/source.properties" ]; then
-            echo "Expected NDK was not installed at $NDK_ROOT." >&2
-            find "$SDK_ROOT/ndk" -maxdepth 2 -name source.properties -print 2>/dev/null || true
-            exit 1
-          fi
-          export ANDROID_SDK_ROOT="$SDK_ROOT"
-          export ANDROID_HOME="$SDK_ROOT"
-          export NDK_ROOT
-          export ANDROID_NDK_HOME="$NDK_ROOT"
-          export NDK_HOME="$NDK_ROOT"
-          echo "Android SDK Root: $ANDROID_SDK_ROOT"
-          echo "Android NDK Root: $NDK_ROOT"
-          echo "Starting Cocos Creator 2.4.13 Android build with --nologin and the Creator 2.4 --path option."
-          "$CREATOR_BIN" --nologin --path "$GITHUB_WORKSPACE" --build "$BUILD_ARGS" >"$LOG_FILE" 2>&1 &
+
+          BUILD_ARGS="platform=$PLATFORM;debug=false;autoCompile=false;buildPath=$OUT"
+          echo "Starting Cocos Creator 2.4.13 $PLATFORM build..."
+          "$CREATOR_BIN" --nologin --path "$GITHUB_WORKSPACE" --build "$BUILD_ARGS" </dev/null >"$LOG_FILE" 2>&1 &
           CREATOR_PID=$!
           trap 'kill -TERM "$CREATOR_PID" 2>/dev/null || true' EXIT
-          NO_PROGRESS=0
+
           for i in $(seq 1 45); do
             sleep 60
             if ! kill -0 "$CREATOR_PID" 2>/dev/null; then
               break
             fi
-            echo "=== Android build heartbeat $i $(date -u '+%Y-%m-%dT%H:%M:%SZ') ==="
-            PROCESS_LIST="$(ps -A -o pid=,ppid=,etime=,%cpu=,%mem=,stat=,command= | grep -E '[C]ocosCreator|[C]ocos Creator Helper|[G]radleDaemon' | head -20 || true)"
-            printf '%s\n' "$PROCESS_LIST"
-            CREATOR_CPU="$(printf '%s\n' "$PROCESS_LIST" | awk 'NF {sum += $4} END {printf "%.1f", sum}')"
+            echo "=== $PLATFORM build heartbeat $i $(date -u '+%Y-%m-%dT%H:%M:%SZ') ==="
+            ps -A -o pid=,ppid=,etime=,%cpu=,%mem=,stat=,command= | grep -E '[C]ocosCreator|[C]ocos Creator Helper' | head -10 || true
             for p in "$GITHUB_WORKSPACE/library" "$GITHUB_WORKSPACE/temp" "$OUT"; do
               if [ -d "$p" ]; then du -sh "$p"; else echo "$p not created"; fi
             done
-            tail -n 20 "$LOG_FILE" || true
-            if [ "$i" = "3" ] || [ "$i" = "10" ] || [ "$i" = "25" ] || [ "$i" = "40" ]; then
-              screencapture -x "$DIAG/creator-screen-$i.png" || true
-            fi
-            if [ ! -d "$GITHUB_WORKSPACE/library" ] && [ ! -d "$GITHUB_WORKSPACE/temp" ] && awk -v cpu="$CREATOR_CPU" 'BEGIN {exit !(cpu < 1.0)}'; then
-              NO_PROGRESS=$((NO_PROGRESS + 1))
-              echo "No asset database directories and Creator process tree CPU below 1% for $NO_PROGRESS consecutive minute(s)."
-            else
-              NO_PROGRESS=0
-            fi
-            if [ "$NO_PROGRESS" -ge 5 ]; then
-              echo 'Creator appears blocked before asset database initialization; capturing the screen and stopping this run.' >&2
-              screencapture -x "$DIAG/creator-screen-stalled.png" || true
-              kill -TERM "$CREATOR_PID" 2>/dev/null || true
-              sleep 5
-              kill -KILL "$CREATOR_PID" 2>/dev/null || true
-              wait "$CREATOR_PID" || true
-              exit 124
-            fi
+            tail -n 15 "$LOG_FILE" || true
           done
+
           if kill -0 "$CREATOR_PID" 2>/dev/null; then
-            echo 'Creator remained active after 45 minutes; stopping this Android-only diagnostic build.' >&2
+            echo "Creator remained active after 45 minutes; stopping." >&2
             kill -TERM "$CREATOR_PID" 2>/dev/null || true
-            sleep 10
+            sleep 5
             kill -KILL "$CREATOR_PID" 2>/dev/null || true
-            wait "$CREATOR_PID" || true
             exit 124
           fi
-          wait "$CREATOR_PID"
-          GRADLEW="$(find "$OUT" -type f -name gradlew -print -quit)"
-          if [ -z "$GRADLEW" ]; then
-            echo 'Creator did not generate a Gradle wrapper.' >&2
-            find "$OUT" -maxdepth 5 -type f -print | head -100
-            exit 1
-          fi
-          chmod +x "$GRADLEW"
-          (cd "$(dirname "$GRADLEW")" && ./gradlew assembleDebug --no-daemon)
-          APK="$(find "$OUT" -type f -name '*.apk' -print -quit)"
-          if [ -z "$APK" ] || [ ! -s "$APK" ]; then
-            echo 'Gradle completed without producing an APK.' >&2
-            exit 1
-          fi
-          echo "APK produced: $APK"
-          ls -lh "$APK"
 
-      - name: Upload Android APK or diagnostic logs
+          if ! wait "$CREATOR_PID"; then
+            echo "=== Cocos Creator failed, last 50 lines of log ==="
+            tail -n 50 "$LOG_FILE" || true
+            exit 1
+          fi
+
+          if [ "$PLATFORM" = "android" ]; then
+            GRADLEW="$(find "$OUT" -type f -name gradlew -print -quit)"
+            if [ -z "$GRADLEW" ]; then
+              echo 'Creator did not generate a Gradle wrapper.' >&2
+              exit 1
+            fi
+            chmod +x "$GRADLEW"
+            (cd "$(dirname "$GRADLEW")" && ./gradlew assembleDebug --no-daemon)
+            APK="$(find "$OUT" -type f -name '*.apk' -print -quit)"
+            if [ -z "$APK" ] || [ ! -s "$APK" ]; then
+              echo 'Gradle completed without producing an APK.' >&2
+              exit 1
+            fi
+            echo "APK produced: $APK"
+            ls -lh "$APK"
+          else
+            XCODEPROJ="$(find "$OUT" -maxdepth 6 -name '*.xcodeproj' -type d -print -quit)"
+            if [ -z "$XCODEPROJ" ]; then
+              echo 'Creator did not generate an Xcode project.' >&2
+              find "$OUT" -maxdepth 5 -print | head -100
+              exit 1
+            fi
+            echo "Found Xcode project: $XCODEPROJ"
+            SCHEME="$(xcodebuild -list -project "$XCODEPROJ" | awk '/Schemes:/{flag=1;next}/^$/{flag=0}flag' | grep -i 'mobile' | head -n 1 | xargs || true)"
+            if [ -z "$SCHEME" ]; then
+              SCHEME="$(xcodebuild -list -project "$XCODEPROJ" | awk '/Schemes:/{flag=1;next}/^$/{flag=0}flag' | head -n 1 | xargs)"
+            fi
+            echo "Building iOS Scheme: $SCHEME"
+            xcodebuild -project "$XCODEPROJ" \
+              -scheme "$SCHEME" \
+              -configuration Release \
+              -sdk iphoneos \
+              -derivedDataPath "$OUT/DerivedData" \
+              CODE_SIGN_IDENTITY="" \
+              CODE_SIGNING_REQUIRED=NO \
+              CODE_SIGNING_ALLOWED=NO \
+              build
+            APP_PATH="$(find "$OUT/DerivedData/Build/Products/Release-iphoneos" -maxdepth 2 -name '*.app' -type d -print -quit)"
+            if [ -z "$APP_PATH" ]; then
+              echo 'xcodebuild completed without producing a .app bundle.' >&2
+              exit 1
+            fi
+            mkdir -p "$OUT/Payload"
+            cp -R "$APP_PATH" "$OUT/Payload/"
+            (cd "$OUT" && zip -qry "ios-unsigned.ipa" Payload)
+            echo "Unsigned IPA produced: $OUT/ios-unsigned.ipa"
+            ls -lh "$OUT/ios-unsigned.ipa"
+          fi
+
+      - name: Upload build artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cocos-creator-2.4.13-android-apk
-          path: ci-output/
+          name: cocos-creator-2.4.13-${{ inputs.platform }}
+          path: |
+            ci-output/${{ inputs.platform }}/**/*.apk
+            ci-output/${{ inputs.platform }}/ios-unsigned.ipa
+            ci-output/diagnostics/
           if-no-files-found: warn
           compression-level: 1
           retention-days: 7
