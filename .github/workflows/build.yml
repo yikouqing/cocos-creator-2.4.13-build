@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   build-android:
-    runs-on: macos-26-intel
+    runs-on: macos-15
     timeout-minutes: 75
     steps:
       - name: Checkout source
@@ -70,6 +70,17 @@ jobs:
           printf '{"language":"zh"}\n' > "$HOME/.CocosCreator/settings.json"
           cat "$HOME/.CocosCreator/settings.json"
 
+      - name: Prepare Rosetta for Intel Cocos Creator
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$(uname -m)" = "arm64" ]; then
+            if ! /usr/bin/arch -x86_64 /usr/bin/true >/dev/null 2>&1; then
+              /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+            fi
+            /usr/bin/arch -x86_64 /usr/bin/true
+          fi
+
       - name: Build Android debug APK
         timeout-minutes: 55
         shell: bash
@@ -99,7 +110,12 @@ jobs:
           echo "Android SDK Root: $ANDROID_SDK_ROOT"
           echo "Android NDK Root: $NDK_ROOT"
           echo "Starting Cocos Creator 2.4.13 Android build with --nologin and the Creator 2.4 --path option."
-          "$CREATOR_BIN" --nologin --path "$GITHUB_WORKSPACE" --build "$BUILD_ARGS" >"$LOG_FILE" 2>&1 &
+          if [ "$(uname -m)" = "arm64" ]; then
+            CREATOR_COMMAND=(/usr/bin/arch -x86_64 "$CREATOR_BIN")
+          else
+            CREATOR_COMMAND=("$CREATOR_BIN")
+          fi
+          "${CREATOR_COMMAND[@]}" --nologin --path "$GITHUB_WORKSPACE" --build "$BUILD_ARGS" >"$LOG_FILE" 2>&1 &
           CREATOR_PID=$!
           trap 'kill -TERM "$CREATOR_PID" 2>/dev/null || true' EXIT
           NO_PROGRESS=0
