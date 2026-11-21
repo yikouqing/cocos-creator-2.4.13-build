@@ -9,7 +9,7 @@ permissions:
 jobs:
   build-android:
     runs-on: macos-15-intel
-    timeout-minutes: 110
+    timeout-minutes: 75
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
@@ -63,7 +63,7 @@ jobs:
           java-version: '8'
 
       - name: Build Android debug APK
-        timeout-minutes: 62
+        timeout-minutes: 55
         shell: bash
         run: |
           set -euo pipefail
@@ -72,27 +72,45 @@ jobs:
           LOG_FILE="$DIAG/creator-android.log"
           mkdir -p "$OUT" "$DIAG"
           BUILD_ARGS="platform=android;debug=false;buildPath=$OUT"
-          echo "Starting Cocos Creator 2.4.13 Android build with --nologin."
-          "$CREATOR_BIN" -- --nologin --project "$GITHUB_WORKSPACE" --build "$BUILD_ARGS" >"$LOG_FILE" 2>&1 &
+          echo "Starting Cocos Creator 2.4.13 Android build with --nologin and the Creator 2.4 --path option."
+          "$CREATOR_BIN" --nologin --path "$GITHUB_WORKSPACE" --build "$BUILD_ARGS" >"$LOG_FILE" 2>&1 &
           CREATOR_PID=$!
           trap 'kill -TERM "$CREATOR_PID" 2>/dev/null || true' EXIT
-          for i in $(seq 1 29); do
-            sleep 120
+          NO_PROGRESS=0
+          for i in $(seq 1 45); do
+            sleep 60
             if ! kill -0 "$CREATOR_PID" 2>/dev/null; then
               break
             fi
             echo "=== Android build heartbeat $i $(date -u '+%Y-%m-%dT%H:%M:%SZ') ==="
-            ps -A -o pid=,ppid=,etime=,%cpu=,%mem=,stat=,command= | grep -E '[C]ocosCreator|[C]ocos Creator|[G]radleDaemon' | head -20 || true
+            PROCESS_LIST="$(ps -A -o pid=,ppid=,etime=,%cpu=,%mem=,stat=,command= | grep -E '[C]ocosCreator|[C]ocos Creator Helper|[G]radleDaemon' | head -20 || true)"
+            printf '%s\n' "$PROCESS_LIST"
+            CREATOR_CPU="$(printf '%s\n' "$PROCESS_LIST" | awk 'NF {sum += $4} END {printf "%.1f", sum}')"
             for p in "$GITHUB_WORKSPACE/library" "$GITHUB_WORKSPACE/temp" "$OUT"; do
               if [ -d "$p" ]; then du -sh "$p"; else echo "$p not created"; fi
             done
             tail -n 20 "$LOG_FILE" || true
-            if [ "$i" = "5" ] || [ "$i" = "15" ] || [ "$i" = "25" ]; then
+            if [ "$i" = "3" ] || [ "$i" = "10" ] || [ "$i" = "25" ] || [ "$i" = "40" ]; then
               screencapture -x "$DIAG/creator-screen-$i.png" || true
+            fi
+            if [ ! -d "$GITHUB_WORKSPACE/library" ] && [ ! -d "$GITHUB_WORKSPACE/temp" ] && awk -v cpu="$CREATOR_CPU" 'BEGIN {exit !(cpu < 1.0)}'; then
+              NO_PROGRESS=$((NO_PROGRESS + 1))
+              echo "No asset database directories and Creator process tree CPU below 1% for $NO_PROGRESS consecutive minute(s)."
+            else
+              NO_PROGRESS=0
+            fi
+            if [ "$NO_PROGRESS" -ge 5 ]; then
+              echo 'Creator appears blocked before asset database initialization; capturing the screen and stopping this run.' >&2
+              screencapture -x "$DIAG/creator-screen-stalled.png" || true
+              kill -TERM "$CREATOR_PID" 2>/dev/null || true
+              sleep 5
+              kill -KILL "$CREATOR_PID" 2>/dev/null || true
+              wait "$CREATOR_PID" || true
+              exit 124
             fi
           done
           if kill -0 "$CREATOR_PID" 2>/dev/null; then
-            echo 'Creator remained active after 58 minutes; stopping this Android-only diagnostic build.' >&2
+            echo 'Creator remained active after 45 minutes; stopping this Android-only diagnostic build.' >&2
             kill -TERM "$CREATOR_PID" 2>/dev/null || true
             sleep 10
             kill -KILL "$CREATOR_PID" 2>/dev/null || true
